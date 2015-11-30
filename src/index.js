@@ -1,6 +1,6 @@
 var xRegExp = require('xregexp').XRegExp;
 
-var removeFormat = function(title) {
+var removeFormat = function (title) {
 	if (!title) return '';
 	title = title.replace(/(\*\*?)(.*?)\1/g, '$2');
 	title = title.replace(/(__?)(.*?)\1/g, '$2');
@@ -14,7 +14,7 @@ var removeFormat = function(title) {
 };
 module.exports.removeFormat = removeFormat;
 
-var getAttributes = function(title) {
+var getAttributes = function (title) {
 	var attribPattern = /\s\{((?:[^\}]|\"[^\"]*\")*)\}\s*$/;
 	var idPattern = /(?:^|\s)#([\w-\:\.]+)/;
 	var classPattern = /(?:^|\s)\.(\w+)/g;
@@ -44,6 +44,16 @@ var getAttributes = function(title) {
 };
 module.exports.getAttributes = getAttributes;
 
+var removeAttributes = function (title) {
+	var attribPattern = /^(.*)\s\{((?:[^\}]|\"[^\"]*\")*)\}\s*$/;
+	var attribMatch = attribPattern.exec(title);
+	if (attribMatch) {
+		return attribMatch[1];
+	}
+	return title;
+};
+module.exports.removeAttributes = removeAttributes;
+
 /*
 Remove all formatting, links, etc.
 Remove all footnotes.
@@ -54,7 +64,7 @@ Remove everything up to the first letter (identifiers may not begin with a numbe
 If nothing is left after this, use the identifier 'section'.
 */
 
-var anchor = function(title, cache) {
+var anchor = function (title, cache) {
 	var id = getAttributes(title).id;
 	if (id) return id;
 	title = removeFormat(title);
