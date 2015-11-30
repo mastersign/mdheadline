@@ -1,0 +1,36 @@
+{
+  "name": "mdheadline",
+  "version": "0.1.0",
+  "description": "helper functions for processing Markdown headlines",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "test"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "mastersign/mdheadline",
+  "keywords": [
+    "markdown",
+    "headline",
+    "anchor",
+    "attributes"
+  ],
+  "author": {
+    "name": "Tobias Kiertscher",
+    "email": "dev@mastersign.de",
+    "url": "http://www.mastersign.de"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mastersign/mdheadline/issues",
+    "email": "dev@mastersign.de"
+  },
+  "homepage": "https://github.com/mastersign/mdheadline#readme",
+  "dependencies": {
+    "xregexp": "^2.0.0"
+  },
+  "devDependencies": {
+  }
+}
