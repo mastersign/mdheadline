@@ -58,10 +58,39 @@ describe('MdHeadline', function () {
 		});
 
 	});
+	
+	describe('removeAttributes()', function () {
+		it('should not change a headline without attributes', function () {
+			assert.equal(mdh.removeAttributes(
+				'ABC `test` <http://127.0.0.1/>'),
+				'ABC `test` <http://127.0.0.1/>',
+				'do not change');
+			assert.equal(mdh.removeAttributes(
+				'ABC {1, 2} test'),
+				'ABC {1, 2} test',
+				'do not change included curly braces');
+		})
+		it('should remove an empty attribute list', function () {
+			assert.equal(mdh.removeAttributes(
+				'Headline {}'),
+				'Headline',
+				'did not remove empty attribute list');
+			assert.equal(mdh.removeAttributes(
+				'Headline {   }'),
+				'Headline',
+				'did not remove empty attrbibute list with whitespace');
+		});
+		it('should remove attribute list', function () {
+			assert.equal(mdh.removeAttributes(
+				'ABC `test` <http://127.0.0.1/> {#c1 .info k=v} '),
+				'ABC `test` <http://127.0.0.1/>',
+				'did not remove attribute list');
+		});
+	});
 
 	describe('getAttributes()', function () {
 
-		it('should parse headline without attributes', function() {
+		it('should parse headline without attributes', function () {
 			assert.deepEqual(mdh.getAttributes(
 				'Headline'),
 				{},
