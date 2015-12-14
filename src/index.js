@@ -2,8 +2,14 @@ var xRegExp = require('xregexp').XRegExp;
 
 var removeFormat = function (title) {
 	if (!title) return '';
-	title = title.replace(/(\*\*?)(.*?)\1/g, '$2');
-	title = title.replace(/(__?)(.*?)\1/g, '$2');
+	title = title.replace(/(^|[^\*])\*{2}([^\*]+?)\*{2}([^\*])/g, '$1$2$3');
+	title = title.replace(/(^|[^\*])\*{2}([^\*]+?)\*{2}$/g, '$1$2');
+	title = title.replace(/(^|[^\*])\*([^\*]+?)\*([^\*])/g, '$1$2$3');
+	title = title.replace(/(^|[^\*])\*([^\*]+?)\*$/g, '$1$2');
+	title = title.replace(/(^|[^\w_])__([^_].+[^_]|[^_]{1,2})__([^\w_])/g, '$1$2$3');
+	title = title.replace(/(^|[^\w_])__([^_].+[^_]|[^_]{1,2})__$/g, '$1$2');
+	title = title.replace(/(^|[^\w_])_([^_].+[^_]|[^_]{1,2})_([^\w_])/g, '$1$2$3');
+	title = title.replace(/(^|[^\w_])_([^_].+[^_]|[^_]{1,2})_$/g, '$1$2');
 	title = title.replace(/`(.*?)`/g, '$1');
 	title = title.replace(/\s*\{[^\}]*\}$/g, '');
 	title = title.replace(/\[([^\]]*)\]\[[^\]]*\]/g, '$1');
@@ -71,7 +77,8 @@ var anchor = function (title, cache) {
 	title = title.replace(xRegExp('^[^\\p{L}]+', 'g'), '');
 	title = title.trim();
 	title = title.replace(/\s/g, '-');
-	title = title.replace(xRegExp('[^\\p{L}\\d_\\-\\.]', 'g'), '');
+	title = title.replace(/^[-_]+/g, '');
+	title = title.replace(xRegExp('[^\\p{L}\\d-_\\.]', 'g'), '');
 	title = title.toLowerCase();
 	if (title === '') {	title = 'section'; }
 	return title;
