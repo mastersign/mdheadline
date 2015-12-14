@@ -14,7 +14,7 @@ describe('MdHeadline', function () {
 				'Abc abc abc abc',
 				'did not remove * emphasis');
 		});
-		it('should remove _ emphsis', function () {
+		it('should remove _ emphasis', function () {
 			assert.equal(mdh.removeFormat(
 				'__Abc___abc_ _abc_ abc'),
 				'Abcabc abc abc',
@@ -131,57 +131,60 @@ describe('MdHeadline', function () {
 
 	describe('anchor()', function () {
 		
+		var check = function (input, expected, comment) {
+			assert.equal(mdh.anchor(input), expected, comment);
+		}
+		
 		it('should remove leading non letters', function () {
-			assert.equal(mdh.anchor(
-				'  headline'),
+			check(
+				'  headline',
 				'headline',
 				'leading whitespace');
-			assert.equal(mdh.anchor(
-				'123 headline'),
+			check(
+				'123 headline',
 				'headline',
 				'leading numbers');
-			assert.equal(mdh.anchor(
-				'(1.2): - headline'),
+			check(
+				'(1.2): - headline',
 				'headline',
 				'arbitrary non letters');
 		});
 		it('should clean characters', function () {
-			assert.equal(mdh.anchor(
-				'head-:line.|1|#+~*$§(23)@€.'),
+			check(
+				'head-:line.|1|#+~*$§(23)@€.',
 				'head-line.123.',
 				'remove punctuation');
-			assert.equal(mdh.anchor(
-				'head-line_äöüÄÖÜßÂÅî'),
+			check(
+				'head-line_äöüÄÖÜßÂÅî',
 				'head-line_äöüäöüßâåî',
 				'keep foreign language letters');
-			assert.equal(mdh.anchor(
-				'head li\tne'),
+			check(
+				'head li\tne',
 				'head-li-ne',
 				'white spaces');
-			assert.equal(mdh.anchor(
-				'The First HEADLINE'),
+			check(
+				'The First HEADLINE',
 				'the-first-headline',
 				'lowercase');
 		});
 		it('should deal with empty headlines', function () {
-			assert.equal(mdh.anchor(
-				''),
+			check(
+				'',
 				'section',
 				'empty string');
-			assert.equal(mdh.anchor(
-				' \t '),
+			check(
+				' \t ',
 				'section',
 				'white spaces with nothing else');
-			assert.equal(mdh.anchor(
-				'123 + (20)'),
+			check(
+				'123 + (20)',
 				'section',
 				'special chars with white spaces');
 		});
 		it('should respect an id attribute', function () {
-			assert.equal(mdh.anchor(
-				'Headline {#abc} '),
-				'abc',
-				'id in headline attributes');
+			check(
+				'Headline {#abc} ',
+				'abc');
 		});
 		
 	});
