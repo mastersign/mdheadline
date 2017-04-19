@@ -1,4 +1,4 @@
-var xRegExp = require('xregexp').XRegExp;
+var XRegExp = require('xregexp');
 
 var removeFormat = function (title) {
 	if (!title) return '';
@@ -74,11 +74,11 @@ var anchor = function (title, cache) {
 	var id = getAttributes(title).id;
 	if (id) return id;
 	title = removeFormat(title);
-	title = title.replace(xRegExp('^[^\\p{L}]+', 'g'), '');
+	title = title.replace(XRegExp('^[^\\p{L}]+', 'g'), '');
 	title = title.trim();
 	title = title.replace(/\s/g, '-');
 	title = title.replace(/^[-_]+/g, '');
-	title = title.replace(xRegExp('[^\\p{L}\\d-_\\.]', 'g'), '');
+	title = title.replace(XRegExp('[^\\p{L}\\d-_\\.]', 'g'), '');
 	title = title.toLowerCase();
 	if (title === '') {	title = 'section'; }
 	return title;
