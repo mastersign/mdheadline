@@ -2,6 +2,7 @@ MdHeadline
 ==========
 
 [![npm package][npm-img]][npm-url]
+[![dependency status][libraries-img]][libraries-url]
 [![build status][travis-img]][travis-url]
 
 > helper functions for processing [Markdown] headlines
@@ -66,6 +67,8 @@ _MdHeadline_ is published under MIT license.
 
 [npm-url]: https://www.npmjs.com/package/mdheadline
 [npm-img]: https://img.shields.io/npm/v/mdheadline.svg
+[libraries-url]: https://libraries.io/npm/mdheadline
+[libraries-img]: https://img.shields.io/librariesio/github/mastersign/mdheadline.svg
 [travis-img]: https://img.shields.io/travis/mastersign/mdheadline/master.svg
 [travis-url]: https://travis-ci.org/mastersign/mdheadline
 [Markdown]: https://daringfireball.net/projects/markdown/
