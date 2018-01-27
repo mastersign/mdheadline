@@ -7,7 +7,7 @@ var mdh = require('../src/index');
 describe('MdHeadline', function () {
 
 	describe('removeFormat()', function() {
-		
+
 		var check = function (input, expected, comment) {
 			assert.equal(mdh.removeFormat(input), expected, comment);
 		};
@@ -96,13 +96,13 @@ describe('MdHeadline', function () {
 		});
 
 	});
-	
+
 	describe('removeAttributes()', function () {
-		
+
 		var check = function (input, expected, comment) {
 			assert.equal(mdh.removeAttributes(input), expected, comment);
 		};
-		
+
 		it('should not change a headline without attributes', function () {
 			check(
 				'ABC `test` <http://127.0.0.1/>',
@@ -112,7 +112,7 @@ describe('MdHeadline', function () {
 				'ABC {1, 2} test',
 				'ABC {1, 2} test',
 				'do not change included curly braces');
-		})
+		});
 		it('should remove an empty attribute list', function () {
 			check(
 				'Headline {}',
@@ -132,7 +132,7 @@ describe('MdHeadline', function () {
 	});
 
 	describe('getAttributes()', function () {
-		
+
 		var check = function (input, expected, comment) {
 			assert.deepEqual(mdh.getAttributes(input), expected, comment);
 		};
@@ -177,11 +177,11 @@ describe('MdHeadline', function () {
 	});
 
 	describe('anchor()', function () {
-		
+
 		var check = function (input, expected, comment) {
 			assert.equal(mdh.anchor(input), expected, comment);
 		};
-		
+
 		it('should remove leading non letters', function () {
 			check(
 				'  headline',
@@ -271,7 +271,7 @@ describe('MdHeadline', function () {
 				'Headline {#abc} ',
 				'abc');
 		});
-		
+
 	});
 
 });
