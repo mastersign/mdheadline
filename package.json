@@ -29,9 +29,9 @@
   },
   "homepage": "https://github.com/mastersign/mdheadline#readme",
   "dependencies": {
-    "xregexp": "^4.0.0"
+    "xregexp": "^5.0.2"
   },
   "devDependencies": {
-    "mocha": "^5.0.0"
+    "mocha": "^8.4.0"
   }
 }
