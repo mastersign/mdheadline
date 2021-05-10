@@ -1,6 +1,6 @@
 {
   "name": "mdheadline",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "helper functions for processing Markdown headlines",
   "main": "src/index.js",
   "files": [
